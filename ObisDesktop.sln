@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObisDesktop", "ObisDesktop\ObisDesktop.csproj", "{B710B6E6-EA10-4A11-AD5B-6159CAF4073D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B710B6E6-EA10-4A11-AD5B-6159CAF4073D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B710B6E6-EA10-4A11-AD5B-6159CAF4073D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B710B6E6-EA10-4A11-AD5B-6159CAF4073D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B710B6E6-EA10-4A11-AD5B-6159CAF4073D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5780A0FA-A609-47A2-821C-6B0AF38110EC}
+	EndGlobalSection
+EndGlobal
