@@ -63,6 +63,10 @@ namespace ObisDesktop
             lbNotDersler.Items.Clear();
             List<Not> notlar = VirtualDb.Notlar.Where(x => x.OgrenciId == LoginOgrenci.Id).ToList();
             VirtualDb.Dersler.Where(x => notlar.Any(y => y.DersId == x.Id)).ToList().ForEach(x => lbNotDersler.Items.Add(x.Kod + " | " + x.Ad));
+            txtVizeNotu.Text = string.Empty;
+            txtFinalNotu.Text = string.Empty;
+            txtButNotu.Text = string.Empty;
+            txtHarfNotu.Text = string.Empty;
         }
         private void lbNotDersler_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -118,6 +122,7 @@ namespace ObisDesktop
         private void btnSinavlar_Click(object sender, EventArgs e)
         {
             hideAllPanels();
+
 
         }
         private void btnProgram_Click(object sender, EventArgs e)

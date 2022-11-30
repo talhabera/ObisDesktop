@@ -58,7 +58,7 @@ namespace ObisDesktop
 
         private void loginFailed()
         {
-            txtPassword.Text = string.Empty;
+            txtPassword.Clear();
             txtFail.Text = "Kullanıcı adı veya şifre hatalı girildi.";
         }
 
