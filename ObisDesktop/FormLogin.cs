@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ObisDesktop.Entities;
+using ObisDesktop.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,9 +25,11 @@ namespace ObisDesktop
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            loginValues.Add("talha", "123");
+            VirtualDb.DatabaseOlustur();
 
-            txtPassword.PasswordChar= '*';
+            txtPassword.PasswordChar = '*';
+            txtUsername.KeyDown += new KeyEventHandler(pressEnterForLogin);
+            txtPassword.KeyDown += new KeyEventHandler(pressEnterForLogin);
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -35,27 +39,35 @@ namespace ObisDesktop
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (loginValues.TryGetValue(txtUsername.Text, out string pass))
+            Ogrenci ogrenci = VirtualDb.Ogrenciler.FirstOrDefault(x => x.KullaniciAdi == txtUsername.Text);
+            if (ogrenci is null || !string.Equals(ogrenci.Sifre, Md5Converter.CreateMD5(txtPassword.Text)))
             {
-                if (txtPassword.Text == pass)
-                {
-                    loginSuccess();
-                    return;
-                }
+                loginFailed();
+                return;
             }
 
-            loginFailed();
+            loginSuccess(ogrenci);
         }
 
-        void loginSuccess()
+        private void loginSuccess(Ogrenci ogrenci)
         {
+            form.LoginOgrenci = ogrenci;
             form.Show();
             this.Hide();
         }
 
-        void loginFailed()
+        private void loginFailed()
         {
+            txtPassword.Text = string.Empty;
             txtFail.Text = "Kullanıcı adı veya şifre hatalı girildi.";
+        }
+
+        private void pressEnterForLogin(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin_Click(sender, e);
+            }
         }
     }
 }

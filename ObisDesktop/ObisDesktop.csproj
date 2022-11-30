@@ -46,6 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Bolum.cs" />
+    <Compile Include="Entities\Ders.cs" />
+    <Compile Include="Entities\Devamsizlik.cs" />
+    <Compile Include="Entities\Duyuru.cs" />
+    <Compile Include="Entities\Not.cs" />
+    <Compile Include="Entities\NotTipi.cs" />
+    <Compile Include="Entities\Ogrenci.cs" />
+    <Compile Include="Entities\Sinav.cs" />
     <Compile Include="FormApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,8 +66,10 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Md5Converter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Helpers\VirtualDb.cs" />
     <EmbeddedResource Include="FormApp.resx">
       <DependentUpon>FormApp.cs</DependentUpon>
     </EmbeddedResource>
