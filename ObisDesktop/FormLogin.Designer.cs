@@ -66,6 +66,7 @@
             this.label2.Size = new System.Drawing.Size(155, 80);
             this.label2.TabIndex = 2;
             this.label2.Text = "OBIS";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 

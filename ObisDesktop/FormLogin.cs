@@ -69,5 +69,10 @@ namespace ObisDesktop
                 btnLogin_Click(sender, e);
             }
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            loginSuccess(VirtualDb.Ogrenciler.FirstOrDefault());
+        }
     }
 }

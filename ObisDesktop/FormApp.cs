@@ -59,7 +59,7 @@ namespace ObisDesktop
         private void btnNotlar_Click(object sender, EventArgs e)
         {
             hideAllPanels();
-            panelNotlar.Show();
+            panelNot.Show();
             lbNotDersler.Items.Clear();
             List<Not> notlar = VirtualDb.Notlar.Where(x => x.OgrenciId == LoginOgrenci.Id).ToList();
             VirtualDb.Dersler.Where(x => notlar.Any(y => y.DersId == x.Id)).ToList().ForEach(x => lbNotDersler.Items.Add(x.Kod + " | " + x.Ad));
@@ -122,9 +122,30 @@ namespace ObisDesktop
         private void btnSinavlar_Click(object sender, EventArgs e)
         {
             hideAllPanels();
+            panelSinav.Show();
+            lbSinavlar.Items.Clear();
+            txtSinavDersKodu.Text = string.Empty;
+            txtSinavDersAdi.Text = string.Empty;
+            txtSinavTarihi.Text = string.Empty;
+            txtSinavSaati.Text = string.Empty;
 
-
+            VirtualDb.Sinavlar.Where(x => x.BolumId == LoginOgrenci.BolumId).ToList().ForEach(x => 
+                lbSinavlar.Items.Add(string.Join(" | ", VirtualDb.Dersler.FirstOrDefault(y => y.Id == x.DersId)?.Kod,
+                                                        VirtualDb.Dersler.FirstOrDefault(y => y.Id == x.DersId)?.Ad)));
         }
+        private void lbSinavlar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var sinav = VirtualDb.Sinavlar.FirstOrDefault(x => x.DersId == VirtualDb.Dersler.FirstOrDefault(y => String.Join(" | ", y.Kod, y.Ad) == 
+                                                                                                                 lbSinavlar.SelectedItem.ToString())?.Id);
+            var ders = VirtualDb.Dersler.FirstOrDefault(x => x.Id == sinav?.DersId);
+            if (sinav is null || ders is null)
+                return;
+            txtSinavDersKodu.Text = ders.Kod;
+            txtSinavDersAdi.Text = ders.Ad;
+            txtSinavTarihi.Text = sinav.Tarih.ToLongDateString();
+            txtSinavSaati.Text = sinav.Tarih.ToShortTimeString();
+        }
+
         private void btnProgram_Click(object sender, EventArgs e)
         {
             hideAllPanels();
@@ -148,8 +169,8 @@ namespace ObisDesktop
         private void hideAllPanels()
         {
             panelDuyuru.Hide();
-            panelNotlar.Hide();
+            panelNot.Hide();
+            panelSinav.Hide();
         }
-
     }
 }
